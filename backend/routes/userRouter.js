@@ -55,7 +55,7 @@ router.post("/register", validate(registrationSchema), async (req, res) => {
     });
     await user.save();
     //retrieving the id from the users table and signing the user id with jwt and putting it in the cookie
-    const payload = { user: { id: user._id } };
+    const payload = { user: { username: user.username } };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
@@ -87,12 +87,12 @@ router.post("/signin", validate(loginSchema), async (req, res) => {
       });
     }
 
-    const payload = { user: { id: user._id } };
+    const payload = { user: { username: user.username } };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
 
-    res.cookie("token", token, { httpOnly: true, secure: false });
+    res.cookie("token", token, { httpOnly: true });
     res.json({ msg: "Logged in successfully" });
   } catch (e) {
     res.status(500).json({ msg: "Server error" });
@@ -111,10 +111,17 @@ router.get("/protected", (req, res) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.user;
-    res.json({ msg: `This is the protected page, user: ${req.user.id}` });
+    res.json({
+      msg: ` Welcome ${req.user.username} ,
+      This is the protected page`,
+    });
   } catch (e) {
     res.status(401).json({ msg: "Not a valid token" });
   }
+});
+router.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({ msg: "Logged out successfully" });
 });
 
 module.exports = router;
