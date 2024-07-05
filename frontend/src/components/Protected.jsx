@@ -28,11 +28,14 @@ function Protected() {
     fetchData();
   }, [navigate]);
   return (
-    <div>
-      <h2>{message}</h2>
-      <p>
-        Sign in as new user <Link to="/login"> Login</Link>
-      </p>
+    <div className="bg-slate-600 h-screen flex flex-col items-center justify-center">
+      <div className="font-bold text-4xl mb-4">{message}</div>
+      <div className="text-white">
+        Sign in as new user:{" "}
+        <Link to="/login" className="underline">
+          Login
+        </Link>
+      </div>
     </div>
   );
 }

@@ -2,15 +2,27 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div>
-      <h1 className="welcome">Welcome To User Authentication</h1>
-      <Link to="/register" className="button">
-        Register
-      </Link>
-      {"  "}
-      <Link to="/login" className="button">
-        Login
-      </Link>
+    <div className="bg-slate-600 h-screen flex justify-center">
+      <div className="flex flex-col justify-center">
+        <div className="rounded-lg bg- w-100 text-center p-2 h-max px-4">
+          <h1 className="font-bold text-4xl pb-10">
+            Welcome To User Authentication
+          </h1>
+          <Link
+            to="/register"
+            className="button w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          >
+            Register
+          </Link>
+          {"  "}
+          <Link
+            to="/login"
+            className="button w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          >
+            Login
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
