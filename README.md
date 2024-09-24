@@ -25,5 +25,4 @@ Before running this project locally, ensure you have the following installed:
 
 - Node.js and npm (Node Package Manager)
 - MongoDB database (local or cloud-based like MongoDB Atlas)
-- Environment variables set up in a `.env` file (see `.env.example` for required variables)
 - Postman for the request handling
